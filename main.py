@@ -1,19 +1,11 @@
-"""Wi-Fi SSID rental pitch: the bakery downstairs pays rent on 32 chars."""
+import os
 
-from pathlib import Path
+# One-sentence entry, written exactly as-is: no trailing newline,
+# so the file stays within the competition's 200-character limit.
+ENTRY = "We sell sick-day excuses vetted by a retired detective, $5 each, because HR believes a good alibi more than a bad cough."
 
-ENTRY_TEXT = (
-    "We rent your Wi-Fi name to the bakery downstairs, so every neighbor "
-    "hunting for signal sees their menu and you collect rent on 32 characters."
-)
+out_dir = os.environ.get("MAKEFUN_OUTPUT", "/output")
+os.makedirs(out_dir, exist_ok=True)
 
-DESTINATION = Path("/output/entry.txt")
-
-
-def main() -> None:
-    DESTINATION.parent.mkdir(parents=True, exist_ok=True)
-    DESTINATION.write_text(ENTRY_TEXT, encoding="utf-8")
-
-
-if __name__ == "__main__":
-    main()
+with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
+    f.write(ENTRY)
